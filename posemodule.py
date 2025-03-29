@@ -42,10 +42,6 @@ class poseDetector():
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
 
-            '''with open('items.txt', 'w') as file:
-                for item in id_storage:
-                    line = ','.join(str(x) for x in item)
-                    file.write(line + '\n')'''
         return id_storage
 def main():
     cap = cv2.VideoCapture("videos/1.mp4")
@@ -65,7 +61,10 @@ def main():
         if not success:
             break
 
-
+        with open('items_1.txt', 'w') as file:
+            for item in id_storage:
+                line = ','.join(str(x) for x in item)
+                file.write(line + '\n')
 
         currentTime = time.time()
         fps = 1 / (currentTime - previousTime)
